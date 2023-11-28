@@ -1,7 +1,23 @@
-const TodoList = () => {
+import TodoItem from "./TodoItem";
+
+const TodoList = ({ Todos, removeTodo, editTodo, toggleComplete }) => {
+  const list = () => {
+    return Todos.map((todo) => (
+      <TodoItem
+        key={todo.id}
+        todo={todo}
+        removeTodo={removeTodo}
+        editTodo={editTodo}
+        toggleComplete={toggleComplete}
+      />
+    ));
+  };
+
+  const todoList = list();
   return (
     <>
-      <h2>TodoList</h2>
+      {todoList.length === 0 && <p>No Items Found</p>}
+      <ul>{todoList}</ul>
     </>
   );
 };
